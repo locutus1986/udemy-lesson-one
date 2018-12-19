@@ -8,7 +8,8 @@ class App extends Component {
      {name: 'Zachary', age: 32},
      {name: 'Atticus', age: 6},
      {name: 'Jessica', age: 38}
-   ]
+   ],
+   displayPerson: false
  }
 
   changeNameHandler = (newName) => {
@@ -48,13 +49,12 @@ class App extends Component {
         {name: 'Oliver', age: 4},
         {name: 'Jessica', age: 38}
       ],
-      disPlayPerson : false
     })
   }
 
   togglePersonsHandler = () => {
     const doesShow = this.state.disPlayPerson;
-    this.setState({disPlayPerson: !doesShow})
+    this.setState({displayPerson: !doesShow})
   } 
 
   render() {
@@ -66,17 +66,10 @@ class App extends Component {
       cursor: 'pointer'
     }
 
-    return (
-      <div className="App">
-        <h1>This is some more text!!</h1>
-        <p>text</p>
-        {/* passing data with bind */}
-        <button 
-          style={style}
-          onClick={this.togglePersonsHandler}>
-          Display Persons</button>
-        {
-        this.state.disPlayPerson?
+    let persons = null
+
+    if(this.state.displayPerson){
+      persons = (
         <div>
           <Person 
             name={this.state.persons[0].name} 
@@ -94,9 +87,19 @@ class App extends Component {
             age = {this.state.persons[2].age}
             handlerFromApp = {this.changeJessicaAgeHandler} />
         </div>
-        :
-        null
-      }
+      )
+    }
+
+    return (
+      <div className="App">
+        <h1>This is some more text!!</h1>
+        <p>text</p>
+        {/* passing data with bind */}
+        <button 
+          style={style}
+          onClick={this.togglePersonsHandler}>
+          Display Persons</button>
+        {persons}
       </div>
     );
     // return React.createElement('div', {className: "app"}, 
