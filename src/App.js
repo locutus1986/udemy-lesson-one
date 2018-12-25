@@ -13,19 +13,24 @@ class App extends Component {
  }
 
   changeNameHandler = (e, id) => {
+    //finds index of component that is going to be mutated and stores in in presonIndex
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id
     })
 
+    //unpacks what is stored at the index of component to be mutated and stores it to person
     const person = {
       ...this.state.persons[personIndex]
     }
 
+    //sets person.name to what is in the in targeted input element
     person.name = e.target.name.value
-   
+    
+    // created a new array from the state and sets the desired index to what has changed
     const persons = [...this.state.persons]
     persons[personIndex] = person
 
+    //updates state 
     this.setState({
       persons: persons
     })
