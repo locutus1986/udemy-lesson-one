@@ -3,8 +3,14 @@ import React from 'react'
 import './Person.css'
 
 const Person = (props) => {
+    const style = {
+        '@media (min-width: 500px)': {
+            width: '450px'
+        }
+    }
+
     return ( 
-        <div className='Person'>
+        <div className='Person' style={style}>
             <p> 
             This person component is named {props.name} and is {props.age} years old
             </p>
@@ -14,4 +20,4 @@ const Person = (props) => {
         )
 }
 
-export default Person
+export default Radium(Person)
